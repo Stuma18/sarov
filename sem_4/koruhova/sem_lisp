@@ -1,0 +1,41 @@
+;gnu clisp  2.49.60
+
+(defun lenall(x)
+    (cond ((NULL x) 0)
+        ((atom (car x)) (+ 1 (lenall (cdr x))))
+        (T (+ (lenall (car x)) (lenall (cdr x))))
+     )
+)
+
+
+(defun elemn(x n)
+    (cond ((= n 0) (car x))
+          (T (elemn (cdr x) (- n 1)))
+        )
+)
+
+
+(defun append1 (x y)
+    (cond ((NULL x) y)
+        (T (cons (car x) (append1 (cdr x) y))))
+)
+
+(print (append1 '(1 2 3) '(4 5 6)))
+
+
+(defun reverse1 (x)
+    (cond ((NULL x) ())
+        (T (append1 (reverse1 (cdr x)) (cons (car x) ()))))
+)
+
+(print (reverse1 '(1 2 3)))
+
+
+(defun reverse2 (x y)
+    (cond ((NULL x) y)
+        (T (reverse2 (cdr x) (cons (car x) y))))
+)
+
+(print (reverse2 '(1 2 3 4 5) ()))
+
+https://rextester.com/l/common_lisp_online_compiler
